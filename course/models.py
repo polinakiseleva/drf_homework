@@ -1,4 +1,7 @@
 from django.db import models
+from django.utils import timezone
+
+from users.models import User
 
 NULLABLE = {'blank': True, 'null': True}
 
@@ -32,3 +35,19 @@ class Lesson(models.Model):
     class Meta:
         verbose_name = 'Урок'
         verbose_name_plural = 'Уроки'
+
+
+class Payments(models.Model):
+    """Модель платежей"""
+    user = models.CharField(max_length=250, verbose_name='Пользователь')
+    payment_date = models.DateTimeField(default=timezone.now, verbose_name='Дата оплаты', **NULLABLE)
+    paid_course_or_lesson = models.CharField(max_length=250, verbose_name='Оплаченный курс или урок')
+    payment_amount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Сумма оплаты", **NULLABLE)
+    payment_method = models.CharField(max_length=20, verbose_name='Метод оплаты', **NULLABLE)
+
+    def __str__(self):
+        return f'Студент {self.user} - оплатил {self.paid_course_or_lesson}'
+
+    class Meta:
+        verbose_name = 'Платеж'
+        verbose_name_plural = 'Платежи'
