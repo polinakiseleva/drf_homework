@@ -1,0 +1,53 @@
+[
+  {
+    "model": "course.course",
+    "pk": 1,
+    "fields": {
+      "title": "курс тестовый",
+      "description": "описание",
+      "preview": ""
+    }
+  },
+  {
+    "model": "course.course",
+    "pk": 2,
+    "fields": {
+      "title": "курс тестовый",
+      "description": "описание",
+      "preview": ""
+    }
+  },
+  {
+    "model": "course.lesson",
+    "pk": 2,
+    "fields": {
+      "title": "Урок 1",
+      "description": "Материал урока",
+      "preview": "",
+      "video_link": null,
+      "course": 1
+    }
+  },
+  {
+    "model": "course.payments",
+    "pk": 1,
+    "fields": {
+      "user": "Пользователь 1",
+      "payment_date": null,
+      "paid_course_or_lesson": "урок 1",
+      "payment_amount": null,
+      "payment_method": "наличные"
+    }
+  },
+  {
+    "model": "course.payments",
+    "pk": 2,
+    "fields": {
+      "user": "Пользователь 2",
+      "payment_date": "2022-08-09",
+      "paid_course_or_lesson": "курс тестовый",
+      "payment_amount": null,
+      "payment_method": "перевод на счет"
+    }
+  }
+]
