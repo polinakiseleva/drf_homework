@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
@@ -11,6 +12,7 @@ class Course(models.Model):
     title = models.CharField(max_length=150, verbose_name='Название курса')
     description = models.TextField(verbose_name='Описание курса')
     preview = models.ImageField(upload_to='course_preview/', verbose_name='Превью', **NULLABLE)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, **NULLABLE, verbose_name='Владелец')
 
     def __str__(self):
         return f'{self.title}'
@@ -28,6 +30,7 @@ class Lesson(models.Model):
     video_link = models.TextField(verbose_name='Ссылка на видео', **NULLABLE)
     course = models.ForeignKey(Course, default=1, on_delete=models.CASCADE, related_name='lessons',
                                verbose_name='Курс')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, **NULLABLE, verbose_name='Владелец')
 
     def __str__(self):
         return f'{self.title}'
